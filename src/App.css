@@ -19,3 +19,9 @@ body {
   border-radius: 10px;
   padding: 10px;
 }
+
+#expand {
+  font-size: 12px;
+  float: right;
+  padding: 5px;
+}

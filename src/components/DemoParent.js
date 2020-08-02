@@ -13,30 +13,35 @@ class DemoParent extends Component {
       { id: 5, value: "Hawaii" },
       { id: 6, value: "Japan" },
     ],
-    Vcountries: [
-      { id: 1, value: "Singapore" },
-      { id: 2, value: "Malaysia" },
-      { id: 3, value: "Thailand" },
-      { id: 4, value: "Cambodia" },
-      { id: 5, value: "Hawaii" },
-      { id: 6, value: "Japan" },
-    ],
+    // Vcountries: [
+    //   { id: 1, value: "Singapore" },
+    //   { id: 2, value: "Malaysia" },
+    //   { id: 3, value: "Thailand" },
+    //   { id: 4, value: "Cambodia" },
+    //   { id: 5, value: "Hawaii" },
+    //   { id: 6, value: "Japan" },
+    // ],
+    searchQuery: "",
   };
 
   //   handle event and change state
-  handleChange = (val, visibleCountries) => {
-    console.log(
-      this.state.countries.filter((country) =>
-        country.value.toLowerCase().includes(val)
-      )
-    );
+  //   handleChange = (val, visibleCountries) => {
+  //     console.log(
+  //       this.state.countries.filter((country) =>
+  //         country.value.toLowerCase().includes(val)
+  //       )
+  //     );
 
-    this.setState({
-      Vountries: this.state.Vcountries.filter((country) =>
-        country.value.toLowerCase().includes(val)
-      ),
-    });
-    console.log(this.state.Vcountries);
+  //     this.setState({
+  //       Vountries: this.state.Vcountries.filter((country) =>
+  //         country.value.toLowerCase().includes(val)
+  //       ),
+  //     });
+  //     console.log(this.state.Vcountries);
+  //   };
+
+  handleChange = (event) => {
+    this.setState({ searchQuery: event });
   };
 
   handleEvent = (event, eventKey) => {
@@ -46,11 +51,12 @@ class DemoParent extends Component {
   render() {
     const max = this.state.countries.length;
     const n = 3;
-    let visibleCountries = [];
+    // let visibleCountries = [];
     // for (let i = 0; i < n; i++) {
     //   visibleCountries.push(this.state.countries[i]);
     // }
 
+    let filteredOptions = [];
     const options = [
       { id: 1, value: "Singapore" },
       { id: 2, value: "Malaysia" },
@@ -60,7 +66,7 @@ class DemoParent extends Component {
       { id: 6, value: "Japan" },
     ];
 
-    const filteredOptions = (searchQuery) =>
+    filteredOptions = (searchQuery) =>
       options.filter(
         (option) =>
           option.value.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -78,16 +84,27 @@ class DemoParent extends Component {
             className="mx-3 my-2 w-auto"
             placeholder="Type to filter..."
             onChange={(e) => {
-              this.handleChange(e.target.value, visibleCountries);
+              //   this.handleChange(e.target.value, visibleCountries)
+              this.handleChange(e.target.value);
               //   setValue(e.target.value);
               //   handleChange(e.target.value);
             }}
+            value={this.state.searchQuery}
           />
 
-          <DemoChild
+          {/* <DemoChild
             handleEvent={this.handleEvent}
-            countries={visibleCountries}
-          />
+            countries={filteredOptions}
+          /> */}
+          {/* <div>
+            {filteredOptions.length > 0 ? (
+              filteredOptions.map((option, index) => {
+                return <div key={index}>{option.value}</div>;
+              })
+            ) : (
+              <div>No results found for {this.state.searchQuery}</div>
+            )}
+          </div> */}
         </Dropdown.Menu>
       </Dropdown>
     );
