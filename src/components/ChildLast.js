@@ -13,7 +13,10 @@ class ChildLast extends React.Component {
         onSelect={handleSelect}
       >
         {this.props.country.value}
-        <span style={{ fontSize: "10px", float: "right", padding: "10px" }}>
+        <span
+          style={{ fontSize: "10px", float: "right", padding: "10px" }}
+          onClick={handleExpansion}
+        >
           {this.props.max} more . . .
         </span>
       </Dropdown.Item>
@@ -23,4 +26,5 @@ class ChildLast extends React.Component {
 
 const handleSelect = (e) => {};
 
+const handleExpansion = () => {};
 export default ChildLast;
