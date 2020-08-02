@@ -9,7 +9,7 @@ import "./App.css";
 
 function App() {
   return (
-    <div id="App">
+    <div id="App" style={{ display: "flex", flexDirection: "row" }}>
       {/* <Dropdown /> */}
       {/* <DropdownButton />
       <Parent /> */}
